@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'; 
-declare let ga: Function;
+declare  let  gtag : Function ;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,15 +8,16 @@ declare let ga: Function;
 })
 export class AppComponent {
   title = 'Angular10GoogleAnalyticsDemo';
-  constructor(public router: Router) {
-
+  constructor(public router: Router){   
     this.router.events.subscribe(event => {
-
-      if (event instanceof NavigationEnd) {
-        ga('set', 'page', event.urlAfterRedirects);
-        ga('send', 'pageview');
-      }
-    });
-  }
+       if(event instanceof NavigationEnd){
+           gtag('config', 'xx-xxxxx-xx', 
+                 {
+                   'page_path': event.urlAfterRedirects
+                 }
+                );
+        }
+     }
+  )}
   
 }
